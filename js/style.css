@@ -1,0 +1,21 @@
+#Pressistant {
+
+}
+.previous{
+    opacity: 0.05;
+}
+.next{
+    opacity: 0.05;
+}
+.present{
+    opacity: 1;
+}
+.slide{
+    transition: opacity 1s;
+}
+.old{
+    opacity: 0.05;
+}
+.state-unknown{
+    opacity: 0.05;
+}
