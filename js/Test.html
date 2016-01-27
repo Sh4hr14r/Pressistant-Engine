@@ -11,40 +11,32 @@
 <body style="overflow:hidden;background: radial-gradient(rgb(250, 250, 250),rgb(149, 149, 149) );height:1500px !important;">
 <div id="press">
 
-        <div id="title" class="slide" data-x="0" data-y="0" data-rotate-z="25" data-rotate-y="450" data-scale="2"
-             data-animation_delay="500" data-slide_delay="5000"
-             style="height:400px;width:600px;background:rgba(139, 140, 137, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
-            <h1>Pressistant Engine Test</h1>
-        </div>
-
-        <div id="Data" class="slide" data-x="50" data-y="1000" data-z="-1200"
-             data-scale="1" data-animation-delay="500" data-slide-delay="1000"
-             style="height:500px;width:600px;background:rgba(87, 124, 140, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
-            <h1>Data is Here</h1>
-            <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is a text</p></div>
-            <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is another text</p></div>
-            <div class="step" style="color:whitesmoke;font-size: 50px;"><img src="ZigZag.Png" style="width:200px;height:200px;"/></div>
-        </div>
-
-    <div id="title2" class="slide" data-x="1000" data-y="100" data-rotate-z="45" data-rotate-x="27" data-rotate-y="40" data-scale="3"
-         data-animation_delay="500" data-slide_delay="500"
-         style="height:400px;width:600px;background:rgba(139, 140, 137, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
+    <div id="title" class="slide" data-x="0" data-y="0" data-rotate-z="25" data-rotate-y="450" data-scale="1.2" data-animation_delay="500" data-slide_delay="5000" style="height:700px;width:600px;background:rgba(139, 140, 137, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
         <h1>Pressistant Engine Test</h1>
     </div>
-
-    <div id="Data2" class="slide" data-x="500" data-y="0" data-z="300"
-         data-scale="7" data-animation-delay="1000" data-slide-delay="1000"
-         style="height:500px;width:600px;background:rgba(87, 124, 140, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
+    <div id="Data" class="slide" data-x="50" data-y="1000" data-z="-1200" data-scale="1" data-animation-delay="500" data-slide-delay="1000" style="height:500px;width:600px;background:rgba(87, 124, 140, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
         <h1>Data is Here</h1>
         <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is a text</p></div>
         <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is another text</p></div>
-        <div class="step" style="color:whitesmoke;font-size: 50px;"><img src="ZigZag.Png" style="width:200px;height:200px;"/></div>
+        <div class="step" style="color:whitesmoke;font-size: 50px;"><img src="ZigZag.Png" style="width:200px;height:200px;"></div>
+    </div>
+    <div id="title2" class="slide" data-x="1000" data-y="100" data-rotate-z="45" data-rotate-x="27" data-rotate-y="40" data-scale="3" data-animation_delay="500" data-slide_delay="500" style="height:400px;width:600px;background:rgba(139, 140, 137, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
+        <h1>Pressistant Engine Test</h1>
+    </div>
+    <div id="Data2" class="slide" data-x="500" data-y="0" data-z="300" data-scale="7" data-animation-delay="1000" data-slide-delay="1000" style="height:500px;width:600px;background:rgba(87, 124, 140, 1);border: 2px solid rgba(133,130,120,1); padding: 10px;border-radius: 5px;">
+        <h1>Data is Here</h1>
+        <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is a text</p></div>
+        <div class="step" style="color:whitesmoke;font-size: 50px;"><p>Hi this is another text</p></div>
+        <div class="step" style="color:whitesmoke;font-size: 50px;"><img src="ZigZag.Png" style="width:200px;height:200px;"></div>
     </div>
 
 
 </div>
 <input id="next" onclick="javascript:press.next()" value="Next" type="button" style="position: fixed; bottom:100px; right:100px;width:100px;height:30px;"/>
 <input id="previous" onclick="javascript:press.previous()" value="Previous" type="button" style="position: fixed; bottom:100px; left:100px;width:100px;height:30px;"/>
+<input id="next" onclick="javascript:location.hash = 'title2';" value="hashIt" type="button" style="position: fixed; bottom:10px; right:50px;width:100px;height:30px;"/>
+<input id="next" onclick="javascript:location.hash = 'title';" value="hashIt" type="button" style="position: fixed; bottom:10px; left:50px;width:100px;height:30px;"/>
+
 <script src="Engine-PartAidin.js">
 
 </script>

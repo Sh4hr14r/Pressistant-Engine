@@ -29,7 +29,7 @@
     /* Implementation of presentation */
     var press = window.press = (function (pressId) {
         window.addEventListener("resize", scaleAgain);
-
+        window.addEventListener("hashchange", hashChanged, false);
         var initialized; //checks if function is initialized
         var slideList = {};//a dictionary to store slides <name,slide>
 
@@ -61,10 +61,19 @@
             root.transformOrigin = "left top 0px";
             root.style.top = "50%";
             root.style.left = "50%";
+            document.getElementsByTagName("body")[0].style.height = window.outerHeight;
 
 
             initialized = true; //set initialized true to avoid another function callback
 
+            //check if hash is set like "url#title"
+            if(window.location.hash){
+                var scr = document.body.scrollTop;
+                var el = slideList[window.location.hash.substr(1)];
+                if(el){
+                    Navigate(el,{notIsTransition:true}); //Navigate to hash id if id exists, without transition(notIsTransition)
+                }
+            }
 
         };
         //Set specific Slide style
@@ -121,12 +130,10 @@
                 next: null, //next slide
                 previous: null, //previous slide
                 element: el, //DOM
-                html: ""
+                originalElement: el.cloneNode(true) //we store a copy of element to use it for rawHtml method
 
             };
-            var wrap = document.createElement('div');
-            wrap.appendChild(el.cloneNode(true));
-            e.html = wrap.innerHTML;
+
             var count = Object.keys(slideList).length;
             if(count > 0) {
                 e.previous = lastSlide;
@@ -164,16 +171,16 @@
         };
         var setClasses = function(el){
             if(initialized) { //if it's first time, there is no currentSlide or previous and next
-                var present = currentSlide.element;
-                var previous = currentSlide.previous.element;
-                var next = currentSlide.next.element;
+                var present = currentSlide;
+                var previous = present.previous;
+                var next = present.next;
                 //removing last previous,next and present classes
-                present.classList.remove("present");
-                previous.classList.remove("previous");
-                next.classList.remove("next");
-                present.classList.add("state-unknown");
-                previous.classList.add("state-unknown");
-                next.classList.add("state-unknown");
+                present.element.classList.remove("present");
+                previous.element.classList.remove("previous");
+                next.element.classList.remove("next");
+                present.element.classList.add("state-unknown");
+                previous.element.classList.add("state-unknown");
+                next.element.classList.add("state-unknown");
             }
             //add it to new element and it's neighbours
             el.element.classList.add("present");
@@ -219,6 +226,13 @@
         function scaleAgain(){
             navigateContainer(currentSlide);//resetting the scale and perspective on resize of window
         }
+
+        function hashChanged(){//support # for url. be carefull, it Scrolls to element.
+            document.body.scrollTop = 0;
+            var id = window.location.hash.substr(1);
+
+            goTo(id);
+        }
         //a very simple function for navigating to desired slide
         var goTo = function(id){
             if(slideList[id]) {
@@ -258,7 +272,28 @@
 
         //getRawHtml for saving presentation
         var getRawHtml = function(){
+            var d = new Date();
+            var n = d.getTime();
+            root.classList.add("press" + n); //add a class to root because document.documentElement doesn't have byId method
+            var element = document.documentElement.cloneNode(true); //make a copy of whole html
+            //remove the root div from copied page
+            element.getElementsByTagName("body")[0].removeChild(element.getElementsByClassName("press" + n)[0]);
+            var pressDiv = document.createElement("div"); //create a new root div for copied page
+            pressDiv.id = "press"; //set the id for new root div
 
+            var current = firstSlide;
+            //start from firstSlide to lastSlide and appending each originalElement to new root div
+            do{
+                pressDiv.appendChild(current.originalElement);
+                current = current.next;//lastSlide.next = firstSlide
+            }while(current != firstSlide);
+            //add the new root div to copied body
+            element.getElementsByTagName("body")[0].insertBefore(pressDiv,element.getElementsByTagName("body")[0].children[0]);
+            root.classList.remove("press" + n); //removing class from original root
+            //we need to wrap the copied page into one div to use the div's innerHtml(it will return whole copied page)
+            var div = document.createElement("div");
+            div.appendChild(element);
+            return div.innerHTML ;
         };
 
         return(
@@ -268,13 +303,14 @@
             next: next,
             previous: previous,
             goTo: goTo,
-            addSlide: addNewSlide
+            addSlide: addNewSlide,
+            getRawHtml: getRawHtml
         });
     })();
 
 press.init();
 
-
+/*
 var show = function(el){
     el.classList.remove('future-step');
     el.classList.add('step-active');
@@ -310,4 +346,5 @@ document.addEventListener("keydown", function ( event ) {
 document.addEventListener("DOMContentLoaded", function() {
     init();
 });
+*/
 })(document, window);
