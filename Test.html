@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheet/style.css"/>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="stylesheet/main.css">
 
-    <link href="style.css" type="text/css"/>
 </head>
 <body style="overflow:hidden;background: radial-gradient(rgb(250, 250, 250),rgb(149, 149, 149) );height:1500px !important;">
 <div id="press">
@@ -32,12 +31,12 @@
 
 
 </div>
-<input id="next" onclick="javascript:press.next()" value="Next" type="button" style="position: fixed; bottom:100px; right:100px;width:100px;height:30px;"/>
-<input id="previous" onclick="javascript:press.previous()" value="Previous" type="button" style="position: fixed; bottom:100px; left:100px;width:100px;height:30px;"/>
-<input id="next" onclick="javascript:location.hash = 'title2';" value="hashIt" type="button" style="position: fixed; bottom:10px; right:50px;width:100px;height:30px;"/>
-<input id="next" onclick="javascript:location.hash = 'title';" value="hashIt" type="button" style="position: fixed; bottom:10px; left:50px;width:100px;height:30px;"/>
+<input id="next" onclick="press.next()" value="Next" type="button" style="position: fixed; bottom:100px; right:100px;width:100px;height:30px;"/>
+<input id="previous" onclick="press.previous()" value="Previous" type="button" style="position: fixed; bottom:100px; left:100px;width:100px;height:30px;"/>
+<input id="next" onclick="location.hash = 'title2';" value="hashIt" type="button" style="position: fixed; bottom:10px; right:50px;width:100px;height:30px;"/>
+<input id="next" onclick="location.hash = 'title';" value="hashIt" type="button" style="position: fixed; bottom:10px; left:50px;width:100px;height:30px;"/>
 
-<script src="Engine-PartAidin.js">
+<script src="js/pressistant.js">
 
 </script>
 <script>
